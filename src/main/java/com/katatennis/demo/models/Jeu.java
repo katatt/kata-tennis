@@ -9,9 +9,10 @@ public class Jeu {
     public Joueur joueur1;
     public Joueur joueur2;
 
-
     //Cette variable stock le score en cours du joueur
+    @JsonIgnore
     public int scoreJoueur1;
+    @JsonIgnore
     public int scoreJoueur2;
 
     //Cette variable stock le score final
@@ -23,6 +24,7 @@ public class Jeu {
     public String etatJeu;
 
     //Cette variable stock le nombre de points max possible pour un jeu
+    @JsonIgnore
     final int pointsMax = 6;
 
 
@@ -31,8 +33,8 @@ public class Jeu {
 
     //Un Jeu dans notre cas comporte 2 joueurs
     //Que j'intialise dans le constructeur
-    public Jeu(Joueur joueur1, Joueur joueur2, int balleGagnanteJ1, int balleGagnanteJ2
-    ){
+    public Jeu(Joueur joueur1, Joueur joueur2,
+               int balleGagnanteJ1, int balleGagnanteJ2){
         this.joueur1 = joueur1;
         this.joueur2 = joueur2;
 
@@ -44,8 +46,30 @@ public class Jeu {
 
     //Les fonctions sont déclencher ici lorsque le jeu est lancé
     public void jouer() {
+        this.genererScore(this.scoreJoueur1,this.scoreJoueur2);
+
+        scoreAdversaires();
+
+        //On vérifie qu'il y ai un joueur gagnant
+        if (this.joueurGagnant()) {
+            this.etatJeu = this.nomDuJoueurGagnant() + " à gagner le match !";
+            System.out.println(this.nomDuJoueurGagnant() + "à gagner le match !");
+        }
+
+        if (this.etatDeuce()){
+            this.etatJeu = "DEUCE";
+            System.out.println("DEUCE");
+        }
+
+        if( avantage()){
+            this.etatJeu = "Avantage pour " + nomDuJoueurGagnant();
+            System.out.println("Avantage pour " + nomDuJoueurGagnant());
+        }
     }
 
+    public void adversaires(){
+        System.out.println(this.joueur1.nom + " VS " + this.joueur2.nom);
+    }
     //Cette fonction simule le lancer de balle gagnant
     public void genererScore(int scoreJoueur1, int scoreJoueur2){
         for (int i=0;i<scoreJoueur1;i++){
@@ -82,6 +106,14 @@ public class Jeu {
 
         }
         return nouveauScore;
+    }
+
+    public String scoreAdversaires(){
+        this.scoreFinal1 = convertirScore(this.joueur1);
+        this.scoreFinal2 = convertirScore(this.joueur2);
+
+        return this.joueur1.nom + " | " + convertirScore(this.joueur1) + "\n"
+                + this.joueur2.nom + " | " + convertirScore(this.joueur2) ;
     }
 
 
