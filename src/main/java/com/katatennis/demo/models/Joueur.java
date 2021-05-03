@@ -1,5 +1,9 @@
 package com.katatennis.demo.models;
 
+
+import lombok.Data;
+
+@Data
 public class Joueur {
 
     public String nom;

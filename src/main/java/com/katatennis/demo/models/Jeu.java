@@ -1,7 +1,9 @@
 package com.katatennis.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
+@Data
 public class Jeu {
 
     public Joueur joueur1;
