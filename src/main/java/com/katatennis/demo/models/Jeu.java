@@ -20,11 +20,45 @@ public class Jeu {
     //(Signalement de l'arbitre : Advantage, Deuce,Gagnant)
     public String etatJeu;
 
-    final int pointsMax = 6;
 
 
 
     public Jeu(){
+    }
 
+    //Les fonctions sont déclencher ici lorsque le jeu est lancé
+    public void jouer() {
+    }
+
+    //Cette fonction simule le lancer de balle gagnant
+    public void genererScore(int scoreJoueur1, int scoreJoueur2){
+
+    }
+
+    public String convertirScore(Joueur joueur){
+        String nouveauScore = null;
+        return nouveauScore;
+    }
+
+
+    //Si le joueur est égalité avec son adversaire on dit alors que c’est un «DEUCE»
+    public boolean etatDeuce(){
+        return true;
+    }
+
+    //Si le joueur a marquer le point après l'égalité il est donc en Avantage
+    public boolean avantage(){
+        return true;
+    }
+
+    //Il faut qu’il ai un score de 4 points (FORTY) et que l’adversaire ai au moins 2 points de moins
+    public boolean joueurGagnant(){
+        return false;
+    }
+
+    //Verifie qui a le plus de point et retourne son nom
+    public String nomDuJoueurGagnant(){
+        String nomDuGagnant="";
+        return nomDuGagnant;
     }
 }
